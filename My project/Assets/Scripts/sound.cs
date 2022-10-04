@@ -5,40 +5,44 @@ using UnityEngine;
 public class sound : MonoBehaviour
 {
     public AudioClip musicClipOne;
-
     public AudioClip musicClipTwo;
-
     public AudioSource musicSource;
-
-    // Update is called once per frame
+    Animator anim;
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
             musicSource.clip = musicClipOne;
             musicSource.Play();
-
+            anim.SetInteger("State", 1);
         }
 
         if (Input.GetKeyUp(KeyCode.W))
         {
             musicSource.Stop();
-
+            anim.SetInteger("State", 0);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
+
         {
             musicSource.clip = musicClipTwo;
             musicSource.Play();
+            anim.SetInteger("State", 2);
         }
 
         if (Input.GetKeyUp(KeyCode.R))
         {
             musicSource.Stop();
-
+            anim.SetInteger("State", 0);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
+
         {
             musicSource.loop = true;
         }
@@ -47,5 +51,6 @@ public class sound : MonoBehaviour
         {
             musicSource.loop = false;
         }
+
     }
 }
